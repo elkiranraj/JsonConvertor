@@ -5,7 +5,7 @@ public class Fibonnaci {
 	static int fibMemo[];
 
 	public static void main(String args[]) {
-		int num = 20;
+		int num = 200;
 
 		System.out.println("By For Loop");
 		Long startTimeForLoop = System.nanoTime();
@@ -21,7 +21,7 @@ public class Fibonnaci {
 		System.out.println("By Using Recursion");
 		Long startTimeRecursion = System.nanoTime();
 		// uses recursion
-		int fibSeriesRec[] = fibByRec(num);
+		int fibSeriesRec[] = fibByRec(2);
 
 		for (int i = 0; i < fibSeriesRec.length; i++) {
 			System.out.print(" " + fibSeriesRec[i] + " ");
