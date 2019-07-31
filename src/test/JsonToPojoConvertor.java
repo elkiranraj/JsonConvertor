@@ -23,7 +23,7 @@ public class JsonToPojoConvertor {
 		File outputPojoDirectory = new File("." + File.separator + "convertedPojo");
 		outputPojoDirectory.mkdirs();
 		try {
-			new JsonConvertor().convert2JSON(inputJson.toURI().toURL(), outputPojoDirectory, packageName, inputJson.getName().replace(".json", ""));
+			new JsonToPojoConvertor().convert2JSON(inputJson.toURI().toURL(), outputPojoDirectory, packageName, inputJson.getName().replace(".json", ""));
 		} catch (IOException e) {
 			System.out.println("Encountered issue while converting to pojo: " + e.getMessage());
 			e.printStackTrace();
@@ -39,6 +39,7 @@ public class JsonToPojoConvertor {
 				return true;
 			}
 
+			@Override
 			public SourceType getSourceType() {
 				return SourceType.JSON;
 			}
