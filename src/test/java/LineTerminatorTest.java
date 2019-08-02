@@ -7,7 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class LineTerminatorTest {
@@ -32,15 +31,14 @@ public class LineTerminatorTest {
 		}
 	}
 
+	private static final String NEWLINE_CHAR = "\\\\n";
 	private void processContent(List<String> lines, String fileName) throws IOException {
 		String output = "";
 		for (String l : lines) {
 			System.out.println(l);
-			//l = l.replace("\\\\", "\\");
-			output = l.replaceAll("\\\\r|\\\\n", "");
+			output = l.replaceAll("\\\\r|\\\\n", "").replaceAll("[ ]?<br>[ ]?", NEWLINE_CHAR);
 			System.out.println(output);
 		}
-		System.out.println(lines.get(0).replaceAll("(\\u000D\\u000A|[\\u000A\\u000B\\u000C\\u000D\\u0085\\u2028\\u2029])", " * "));
 		Files.write(Paths.get(fileName + "_output.txt"), output.getBytes());
 	}
 }

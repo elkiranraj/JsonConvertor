@@ -1,9 +1,15 @@
 package test.java;
 
-import java.io.*;
-import java.util.*;
-import java.util.stream.*;
-import java.nio.file.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MessageProccessorSolution {
 
@@ -67,7 +73,7 @@ public class MessageProccessorSolution {
 			if (l.startsWith(TO) && l.contains(RULE_TO)) {
 				applyReplacement = true;
 			}
-			if (l.strip().startsWith(SUBJECT)) {
+			if (l.trim().startsWith(SUBJECT)) {
 				applyReversal = checkSubject(l);
 			}
 			if (l.startsWith(BODY)) {
@@ -103,12 +109,12 @@ public class MessageProccessorSolution {
 			}
 			output.append(l).append(System.lineSeparator());
 		}
-		Files.writeString(Paths.get(DEST_DIR + fileName), output.toString());
+		Files.write(Paths.get(DEST_DIR + fileName), output.toString().getBytes());
 	}
 
 	private boolean checkSubject(String l) {
 		String temp = l.replace(SUBJECT, EMPTY);
-		return temp.strip().startsWith(RULE_SUBJECT);
+		return temp.trim().startsWith(RULE_SUBJECT);
 	}
 
 	private String reverseLine(String l) {
