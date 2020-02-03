@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
-public class GenerateQuery {
+public class GenerateTailTagQuery {
 
 	public static void main(String[] args) {
-		GenerateQuery sol = new GenerateQuery();
+		GenerateTailTagQuery sol = new GenerateTailTagQuery();
 		System.out.println("Starting process..");
 		try {
 			sol.printLines();
